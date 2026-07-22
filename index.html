@@ -359,6 +359,78 @@ transform:translateY(0);
 }
 
 }
+  #sedatOverlay{
+
+position:fixed;
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:rgba(3,25,39,.82);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+
+overflow:hidden;
+
+}
+
+#sedatOverlay h1{
+
+position:relative;
+
+font-size:54px;
+
+color:white;
+
+text-align:center;
+
+font-weight:800;
+
+line-height:1.15;
+
+animation:pulse .7s infinite alternate;
+
+z-index:2;
+
+text-shadow:
+0 0 25px rgba(255,255,255,.5);
+
+}
+
+#confetti{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+left:0;
+top:0;
+
+}
+
+@keyframes pulse{
+
+from{
+
+transform:scale(1);
+
+}
+
+to{
+
+transform:scale(1.08);
+
+}
+
+}
 </style>
 
 </head>
@@ -423,7 +495,7 @@ Yetiş Hızır
 
 </div>
 
-<div class="card black">
+<div class="card black" onclick="showSedat()">
 
 <div class="icon">
 
@@ -439,7 +511,7 @@ Sedat Çok Yakışıklı
 
 </div>
 
-<div class="card light">
+<div class="card light" onclick="openModal('Su iç! 💧')">
 
 <div class="icon">
 
@@ -521,7 +593,33 @@ Boncuk Terapisi
 </div>
 
 <script>
+function showSedat(){
 
+    if(navigator.vibrate){
+        navigator.vibrate([150,80,150]);
+    }
+
+    const overlay=document.getElementById("sedatOverlay");
+
+    overlay.style.display="flex";
+
+    confetti({
+
+        particleCount:180,
+
+        spread:150,
+
+        origin:{y:0.55}
+
+    });
+
+    setTimeout(()=>{
+
+        overlay.style.display="none";
+
+    },3000);
+
+}
 let currentMessage = "";
 
 function openModal(message){
@@ -546,6 +644,14 @@ function sendWhatsApp(number){
 }
 
 </script>
+  <div id="sedatOverlay">
+
+    <canvas id="confetti"></canvas>
+
+    <h1>😎<br>SEDAT<br>ÇOK YAKIŞIKLI</h1>
+
+</div>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </body>
 
 </html>
